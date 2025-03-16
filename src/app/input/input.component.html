@@ -1,0 +1,16 @@
+<form (ngSubmit)="gamotana(name.value)" #taskForm="ngForm">
+    <input name="#nameInput" #name type="text">
+    <input type="submit">
+</form>
+<ul>
+    @for (item of tasks; track $index) {
+        <li style="display: inline-block;">{{item}}</li>
+        <button style="display: inline-block;" (click)="delete($index)">remove task</button>
+        <button style="display: inline-block;" (click)="edit($index)">edit</button>
+        <form #taskForm="ngForm" (ngSubmit)="submit($index)">
+        <input [(ngModel)]="current" [ngModelOptions]="{standalone: true}" *ngIf="helpMe[$index].visibility" type="text">
+        <input type="submit" *ngIf="helpMe[$index].visibility">
+        </form>
+        <br>
+    }
+</ul>
